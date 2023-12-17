@@ -1,73 +1,66 @@
+/*Study more about pointers: arrow operator, deferencing, etc.*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
-struct Node {
-	int 	data;
-	struct 	Node *next;
-}; typedef struct Node Node;
+typedef struct Node {
+	int data;
+	struct Node* next;
+} Node;
 
-int isEmpty(Node **list) 
+//1. create node
+//2. check if list is empty.
+//3. traverse the list to get the last node
+//4. assign the next member of the last node to the new node.
+void insertAtEnd(Node **head, int value)
 {
-	return((*list)->next == NULL);
-}
+	Node *newNode = (Node *)malloc(sizeof(Node));
+	
+	newNode->data = value;
+	newNode->next = NULL;
 
-Node* createNode() 
-{	
-	Node *n 	= (Node *)malloc(sizeof(Node));
-	n->next 	= NULL;
-
-	return n;
-}
-
-void insert(Node* *list, int value)
-{
-	if (isEmpty(list)) {
-		(*list)->data = value;
+	if (*head == NULL) {
+		*head = newNode;		
 	}
 
-	Node *tmp = *list;
-	while (tmp != NULL) tmp = tmp->next;
+	else {
+		Node *tmp = *head;
+		while (tmp->next != NULL) {
+			tmp = tmp->next;
+		}
 
-	Node *n 	= createNode();
-	tmp->next 	= n;
+		tmp->next = newNode;
+	}
 }
 
-void delete(Node **list) 
+void printList(Node **head)
 {
-	if (isEmpty(list)) {
-		free(list);	
-	}
-
-	Node *current 	= *list;
-	Node *tmp;
-	while (current != NULL) {
-		tmp 	= *list;
-		current = current->next;
-	}
-
-	tmp->next = NULL;
-	free(current);		
-}
-
-void display(Node **list)
-{
-	Node *tmp = *list;
+	Node *tmp = *head;
 	while (tmp != NULL) {
 		printf("%d\n", tmp->data);
 		tmp = tmp->next;
 	}
 }
 
-int main(void) 
-{	
-	Node *head = createNode();
-	
-	insert(&head, 10);	
-	insert(&head, 2);
-	insert(&head, 3);
-	insert(&head, 11);
+void deleteList(Node **head)
+{
+	Node *tmp;
+	while (*head != NULL) {
+		tmp = *head;
+		*head = (*head)->next;
+		free(tmp);
+	}
+}
 
-	display(&head);
+int main() 
+{
+	Node *head;
+	
+	insertAtEnd(&head, 10);
+	insertAtEnd(&head, 12);
+	printList(&head);
+
+	deleteList(&head);
 	return 0;
 }
