@@ -39,19 +39,29 @@ void insertAtEnd(Node **head, int value)
 void removeFromEnd(Node **head) //bugs when there is just one element in the list
 {
 	Node *prev = NULL;
-	Node *last = *head;
+	Node *current = *head;
 
-	while (last->next != NULL) {
-		prev = last;
-		last = last->next;
+	while (current->next != NULL) {
+		prev = current;
+		current = current->next;
 	}
 
-	prev->next = NULL;
-	free(last);		
+	if (prev == NULL) {
+		free(current);
+		*head = NULL;
+	}
+
+	else {
+		prev->next = NULL;
+		free(current);		
+	}
 }
 
 void printList(Node **head)
 {
+	if (*head == NULL)
+		printf("Empty list!\n");
+
 	Node *tmp = *head;
 	while (tmp != NULL) {
 		printf("%d\n", tmp->data);
@@ -74,9 +84,9 @@ int main()
 	Node *head;
 	
 	insertAtEnd(&head, 10);
-	insertAtEnd(&head, 12);
-	insertAtEnd(&head, 14);
-	insertAtEnd(&head, 24);
+//	insertAtEnd(&head, 12);
+//	insertAtEnd(&head, 14);
+//	insertAtEnd(&head, 24);
 	printList(&head);
 	
 	printf("\n");
