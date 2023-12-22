@@ -75,6 +75,16 @@ void removeFromEnd(Node **head) //bugs when there is just one element in the lis
 	}
 }
 
+
+void removeFromBeginning(Node **head) 
+{
+	Node *tmp = *head;
+	*head = (*head)->next;
+
+	tmp->next = NULL;
+	free(tmp);
+}
+
 void printList(Node **head)
 {
 	if (*head == NULL)
@@ -101,13 +111,16 @@ int main()
 {
 	Node *head;
 	
-//	insertAtEnd(&head, 10);
-//	insertAtEnd(&head, 12)	
-//	insertAtEnd(&head, 14);
-	insertAtBeginning(&head, 24);
-//	insertAtEnd(&head, 24);
+	insertAtEnd(&head, 10);
+	insertAtEnd(&head, 12);	
+	insertAtEnd(&head, 14);
+//	insertAtBeginning(&head, 24);
+	insertAtEnd(&head, 24);
 	printList(&head);
 	
+	printf("\n");
+	removeFromBeginning(&head);
+	printList(&head);	
 	deleteList(&head);
 	return 0;
 }
