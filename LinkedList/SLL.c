@@ -9,10 +9,6 @@ typedef struct Node {
 	struct Node* next;
 } Node;
 
-//1. create node
-//2. check if list is empty.
-//3. traverse the list to get the last node
-//4. assign the next member of the last node to the new node.
 void insertAtEnd(Node **head, int value)
 {
 	Node *newNode = (Node *)malloc(sizeof(Node));
@@ -34,10 +30,6 @@ void insertAtEnd(Node **head, int value)
 	}
 }
 
-//1. create node
-//2. if list is empty, assign to the next member the value of new node
-//3. assign to the next member of the new node the value of head
-//4. assign to the head node the value of new node
 void insertAtBeginning(Node **head, int value)
 {
 	Node *newNode = (Node *)malloc(sizeof(Node));
@@ -54,8 +46,9 @@ void insertAtBeginning(Node **head, int value)
 	}
 }
 
-void removeFromEnd(Node **head) //bugs when there is just one element in the list
+void removeFromEnd(Node **head) 
 {
+
 	Node *prev = NULL;
 	Node *current = *head;
 
