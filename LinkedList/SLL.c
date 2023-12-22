@@ -36,14 +36,15 @@ void insertAtEnd(Node **head, int value)
 
 //1. create node
 //2. if list is empty, assign to the next member the value of new node
-//3. assign to the next member of the new node the value of next member of the head node
-//4. assign to the next member of the head node the value of the new node
+//3. assign to the next member of the new node the value of head
+//4. assign to the head node the value of new node
 void insertAtBeginning(Node **head, int value)
 {
 	Node *newNode = (Node *)malloc(sizeof(Node));
 
 	if (*head == NULL) {
-		(*head)->next = newNode;
+		*head = newNode;
+		(*head)->data = value;
 	}
 	
 	else {
@@ -100,16 +101,13 @@ int main()
 {
 	Node *head;
 	
-	insertAtEnd(&head, 10);
-	insertAtEnd(&head, 12);
-	insertAtEnd(&head, 14);
+//	insertAtEnd(&head, 10);
+//	insertAtEnd(&head, 12)	
+//	insertAtEnd(&head, 14);
 	insertAtBeginning(&head, 24);
 //	insertAtEnd(&head, 24);
 	printList(&head);
 	
-//	printf("\n");
-//	removeFromEnd(&head);
-//	printList(&head);
 	deleteList(&head);
 	return 0;
 }
