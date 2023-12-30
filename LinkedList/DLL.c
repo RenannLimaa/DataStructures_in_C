@@ -61,14 +61,32 @@ void printList(Node **head)
 
 }
 
+void printReverseList(Node **head)
+{
+    if (*head == NULL)
+        printf("Empty list!");
+    
+    Node *tmp = *head;
+    while (tmp->next != NULL) {
+        tmp = tmp->next;
+    }
+
+    while (tmp != NULL) {
+        printf("%d\n", tmp->data);
+        tmp = tmp->prev;
+    }
+
+}
+
 int main() 
 {
 	Node *head;
 
-    insertAtEnd(&head, 10);
-
+    insertAtEnd(&head, 1);
+    insertAtEnd(&head, 2);
+    insertAtEnd(&head, 3);
     printList(&head);
-    
+    printReverseList(&head);
     deleteList(&head);
 	return 0;
 }
