@@ -57,6 +57,29 @@ void insertAtBeginning(Node **head, int value)
      }
 }
 
+void removeFromEnd(Node **head)
+{
+    Node *tmp = *head;
+    if (tmp->next == NULL) {
+        free(tmp);
+        *head = NULL;
+    }
+
+    else {
+        while (tmp->next != NULL) {
+            tmp = tmp->next;
+        }
+    
+        Node *secondLast;
+        secondLast = tmp->prev;
+        secondLast->next = NULL;
+    
+        tmp->prev = NULL;
+        free(tmp);
+    }
+}
+
+
 void deleteList(Node **head) {
     Node *tmp;
     while (*head != NULL) {
@@ -78,6 +101,7 @@ void printList(Node **head)
     }
 
 }
+
 
 void printReverseList(Node **head)
 {
@@ -105,7 +129,10 @@ int main()
     insertAtEnd(&head, 3);
     insertAtBeginning(&head, 4);
     printList(&head);
-    printReverseList(&head);
+    
+
+    removeFromEnd(&head);
+    printList(&head);
     deleteList(&head);
 	return 0;
 }
