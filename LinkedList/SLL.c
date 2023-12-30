@@ -9,9 +9,15 @@ typedef struct Node {
 	struct Node* next;
 } Node;
 
+Node* createNode() 
+{
+	Node *n = (Node *)malloc(sizeof(Node));
+	return n;
+}
+
 void insertAtEnd(Node **head, int value)
 {
-	Node *newNode = (Node *)malloc(sizeof(Node));
+	Node *newNode = createNode();
 	
 	newNode->data = value;
 	newNode->next = NULL;
@@ -32,7 +38,7 @@ void insertAtEnd(Node **head, int value)
 
 void insertAtBeginning(Node **head, int value)
 {
-	Node *newNode = (Node *)malloc(sizeof(Node));
+	Node *newNode = createNode();
 
 	if (*head == NULL) {
 		*head = newNode;
@@ -112,10 +118,10 @@ int main()
 	Node *head;
 	
 	insertAtEnd(&head, 10);
-//	insertAtEnd(&head, 12);	
-//	insertAtEnd(&head, 14);
-//	insertAtBeginning(&head, 24);
-//	insertAtEnd(&head, 24);
+	insertAtEnd(&head, 12);	
+	insertAtEnd(&head, 14);
+	insertAtBeginning(&head, 24);
+	insertAtEnd(&head, 24);
 	printList(&head);
 	
 	printf("\n");
