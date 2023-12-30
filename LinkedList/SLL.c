@@ -12,6 +12,7 @@ typedef struct Node {
 Node* createNode() 
 {
 	Node *n = (Node *)malloc(sizeof(Node));
+	n->next = NULL;
 	return n;
 }
 
