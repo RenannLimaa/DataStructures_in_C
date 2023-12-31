@@ -8,18 +8,18 @@ typedef struct Node {
 	struct Node *prev;
 } Node;
 
-Node* createNode() 
+Node* createNode(int value) 
 {
 	Node *n = (Node *)malloc(sizeof(Node));
     n->next = NULL;
 	n->prev = NULL;
-
+    n->data = value;
 	return n;
 }
 
 void insertAtEnd(Node **head, int value)
 {
-    Node *newNode = createNode();
+    Node *newNode = createNode(value);
     newNode->data = value;
     newNode->next = NULL;
         
@@ -41,7 +41,7 @@ void insertAtEnd(Node **head, int value)
 
 void insertAtBeginning(Node **head, int value) 
 {
-    Node *newNode = createNode();
+    Node *newNode = createNode(value);
     newNode->data = value;    
     newNode->prev = NULL;
     
@@ -85,7 +85,7 @@ void removeFromBeginning(Node **head)
         *head = NULL;
         free(*head);
     }
-
+        
     else {
         Node *tmp = *head;
 
@@ -139,17 +139,13 @@ void printReverseList(Node **head)
 
 int main() 
 {
-	Node *head;
+	Node *head = createNode(10);
 
     insertAtEnd(&head, 1);
     insertAtEnd(&head, 2);
     insertAtEnd(&head, 3);
-    insertAtBeginning(&head, 4);
-    printList(&head);
     
-
-    removeFromEnd(&head); 
-    printList(&head);
+    printList(&head); 
     deleteList(&head);
 	return 0;
 }
