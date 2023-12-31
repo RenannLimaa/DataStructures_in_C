@@ -79,6 +79,7 @@ void removeFromEnd(Node **head)
     }
 }
 
+
 void removeFromBeginning(Node **head)
 {
     if ((*head)->next == NULL) {
@@ -95,6 +96,18 @@ void removeFromBeginning(Node **head)
         tmp->next = NULL;
         free(tmp);
     }
+}
+
+int search(Node **head, int value)
+{
+    Node *tmp = *head;
+    while (tmp != NULL) {
+        if (tmp->data == value)
+            return 1;
+        tmp = tmp->next;
+    }
+    
+    return 0; 
 }
 
 void deleteList(Node **head) {
@@ -145,7 +158,12 @@ int main()
     insertAtEnd(&head, 2);
     insertAtEnd(&head, 3);
     
-    printList(&head); 
+    int found = search(&head, 3);
+    printf("%s\n", found == 1 ? "Value is in list" : "Value is not in list");
+    found = search(&head, 13);
+    printf("%s\n", found == 1 ? "Value is in list" : "Value is not in list");
+
+    printList(&head);
     deleteList(&head);
 	return 0;
 }

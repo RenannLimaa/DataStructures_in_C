@@ -1,6 +1,3 @@
-/*Study more about pointers: arrow operator, deferencing, etc.*/
-
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -93,6 +90,17 @@ void removeFromBeginning(Node **head)
 	}
 }
 
+int search(Node **head, int value)
+{
+    Node *tmp;
+    while (tmp != NULL) {
+        if (tmp->data == value)
+            return 1;
+        tmp = tmp->next;
+    }
+
+    return 0;
+}
 void printList(Node **head)
 {
 	if (*head == NULL)
