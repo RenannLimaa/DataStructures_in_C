@@ -79,6 +79,23 @@ void removeFromEnd(Node **head)
     }
 }
 
+void removeFromBeginning(Node **head)
+{
+    if ((*head)->next == NULL) {
+        *head = NULL;
+        free(*head);
+    }
+
+    else {
+        Node *tmp = *head;
+
+        *head = (*head)->next;
+        (*head)->prev = NULL;
+       
+        tmp->next = NULL;
+        free(tmp);
+    }
+}
 
 void deleteList(Node **head) {
     Node *tmp;
@@ -131,7 +148,7 @@ int main()
     printList(&head);
     
 
-    removeFromEnd(&head);
+    removeFromEnd(&head); 
     printList(&head);
     deleteList(&head);
 	return 0;
