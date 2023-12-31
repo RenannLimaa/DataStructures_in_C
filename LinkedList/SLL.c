@@ -9,16 +9,17 @@ typedef struct Node {
 	struct Node* next;
 } Node;
 
-Node* createNode() 
+Node* createNode(int value) 
 {
 	Node *n = (Node *)malloc(sizeof(Node));
 	n->next = NULL;
+    n->data = value;
 	return n;
 }
 
 void insertAtEnd(Node **head, int value)
 {
-	Node *newNode = createNode();
+	Node *newNode = createNode(value);
 	
 	newNode->data = value;
 	newNode->next = NULL;
@@ -39,7 +40,7 @@ void insertAtEnd(Node **head, int value)
 
 void insertAtBeginning(Node **head, int value)
 {
-	Node *newNode = createNode();
+	Node *newNode = createNode(value);
 
 	if (*head == NULL) {
 		*head = newNode;
@@ -116,17 +117,12 @@ void deleteList(Node **head)
 
 int main() 
 {
-	Node *head;
+    Node *head = createNode(8);
 	
 	insertAtEnd(&head, 10);
 	insertAtEnd(&head, 12);	
-	insertAtEnd(&head, 14);
-	insertAtBeginning(&head, 24);
-	insertAtEnd(&head, 24);
-	printList(&head);
-	
-	printf("\n");
-	removeFromBeginning(&head);
+    insertAtBeginning(&head, 6);
+
 	printList(&head);	
 	deleteList(&head);
 	return 0;
