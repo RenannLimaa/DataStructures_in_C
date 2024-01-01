@@ -3,3 +3,6 @@ SLL: SLL.c
 
 DLL: DLL.c
 	gcc DLL.c -o ../output/DLL -Wall -Wextra
+
+circularSLL: circularSLL.c
+	gcc circularSLL.c -o ../output/circularSLL -Wall -Wextra
