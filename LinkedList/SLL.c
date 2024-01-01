@@ -92,7 +92,7 @@ void removeFromBeginning(Node **head)
 
 int search(Node **head, int value)
 {
-    Node *tmp;
+    Node *tmp = *head;
     while (tmp != NULL) {
         if (tmp->data == value)
             return 1;
