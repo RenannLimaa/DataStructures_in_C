@@ -35,6 +35,24 @@ void insertAtEnd(Node **head, int value)
     }
 }
 
+void insertAtBeginning(Node **head, int value)
+{
+    Node *newNode = createNode(value); 
+
+    if (*head == NULL) {
+        *head = newNode;
+        newNode->next = *head;
+        return; 
+    }
+
+    Node *tmp = *head;
+    while (tmp->next != *head) {
+        tmp = tmp->next;
+    }
+    newNode->next = *head;
+    tmp->next = newNode;
+    *head = newNode;
+}
 void removeFromEnd(Node **head)
 {
     if ((*head)->next == *head) {
@@ -90,10 +108,12 @@ void deleteList(Node **head)
 
 int main() 
 {
-    Node *head = createNode(1);
-  
-   
-    removeFromEnd(&head);    
+    Node *head;
+    insertAtBeginning(&head, 20); 
+    insertAtEnd(&head, 2);
+    insertAtEnd(&head, 12);
+    insertAtBeginning(&head, 14);
+    
     printList(&head);
     deleteList(&head);
     return 0;
