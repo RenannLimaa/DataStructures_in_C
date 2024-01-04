@@ -85,6 +85,20 @@ void printList(Node **head)
         tmp = tmp->next;
     } while (tmp != *head);
 }
+
+void printReverseList(Node **head) 
+{
+    Node *tmp = *head;
+    while (tmp->next != *head) {
+        tmp = tmp->next;
+    }
+
+    while (tmp != NULL) {
+        printf("%d\n", tmp->data);
+        tmp = tmp->prev;
+    }
+}
+
 int main() 
 {
     Node *head;
@@ -94,5 +108,6 @@ int main()
     insertAtEnd(&head, 3);
     insertAtBeginning(&head, 0);
     printList(&head);
+    printReverseList(&head);
     deleteList(&head);
 }
