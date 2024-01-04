@@ -37,6 +37,26 @@ void insertAtEnd(Node **head, int value)
     newNode->prev = tmp;
 }
 
+void insertAtBeginning(Node **head, int value)
+{
+    Node *newNode = createNode(value);
+
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+
+    Node *tmp = *head;
+    while (tmp->next != *head) {
+        tmp = tmp->next;
+    }
+
+    newNode->next = *head;
+    (*head)->prev = newNode;
+    *head = newNode;
+
+    tmp->next = *head;
+}
 void deleteList(Node **head)
 {
     if (*head == NULL) {
@@ -72,6 +92,7 @@ int main()
     insertAtEnd(&head, 1);
     insertAtEnd(&head, 2);
     insertAtEnd(&head, 3);
+    insertAtBeginning(&head, 0);
     printList(&head);
     deleteList(&head);
 }
