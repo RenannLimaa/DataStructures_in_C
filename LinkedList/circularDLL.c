@@ -75,6 +75,30 @@ void removeFromEnd(Node **head)
    secondLast->next = *head;
    free(tmp);
 }
+
+void removeFromBeginning(Node **head) 
+{
+    if ((*head)->next == *head) {
+       *head = NULL;
+       free(head);
+       return;
+    }
+
+    Node *tmp = *head;
+    *head = (*head)->next;
+
+    Node *lastNode = *head;
+    while (lastNode->next != *head) {
+        lastNode = lastNode->next;
+    }
+
+    tmp->next = NULL;
+    free(tmp);
+
+    (*head)->prev = NULL;
+    lastNode->next = *head;
+}
+
 void deleteList(Node **head)
 {
     if (*head == NULL) {
@@ -130,9 +154,11 @@ int main()
     insertAtEnd(&head, 2);
     insertAtEnd(&head, 3);
     insertAtBeginning(&head, 0);
+    insertAtEnd(&head, 10);
     printList(&head);
     
     removeFromEnd(&head);
+    removeFromBeginning(&head);
     printList(&head);
     deleteList(&head);
 }
