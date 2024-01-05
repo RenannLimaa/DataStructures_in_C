@@ -88,7 +88,7 @@ void removeFromBeginning(Node **head)
     *head = (*head)->next;
 
     Node *lastNode = *head;
-    while (lastNode->next != *head) {
+    while (lastNode->next !=tmp) {
         lastNode = lastNode->next;
     }
 
