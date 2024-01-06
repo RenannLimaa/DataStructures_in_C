@@ -48,6 +48,28 @@ int pop(Node **top)
     return el;
 }
 
+int getSize(Node **top) 
+{    
+    if (*top == NULL) 
+        return 0;
+    
+    Node *tmp = *top;
+    int count = 0;    
+    while (tmp != NULL) {
+        count++;
+        tmp = tmp->next;
+    }
+
+    return count;
+}
+
+int peek(Node **top) 
+{
+    if (*top == NULL) 
+        return -1;
+
+    return (*top)->data;
+}
 void printStack(Node **top) 
 {
     if (*top == NULL) {
@@ -89,6 +111,8 @@ int main()
     
     printf("Element removed: %d\n", pop(&top));
     printStack(&top);
+    printf("%d\n", peek(&top));
+    printf("The size of stack is: %d\n", getSize(&top));
     deleteStack(&top);
     return 0;
 }
