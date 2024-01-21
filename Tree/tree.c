@@ -43,7 +43,26 @@ void inOrder(Node *root)
     }
 }
 
+void deleteTree(Node *root) 
+{
+    if (root != NULL) {
+
+        deleteTree(root->left);
+        deleteTree(root->right);
+        free(root);
+    }
+}
+
 int main() 
 {
+    Node *root = createNode(20);
+    
+    root = insert(root, 4);
+    root = insert(root, 3);
+    root = insert(root, 23);
+    root = insert(root, 5);
+
+    inOrder(root);
+    deleteTree(root);
     return 0;
 }
