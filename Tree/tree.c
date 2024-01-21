@@ -34,6 +34,15 @@ Node* insert(Node *root, int value)
     return root;
 }
 
+void inOrder(Node *root) 
+{
+    if (root != NULL) {
+        inOrder(root->left);
+        printf("%d\n", root->data);
+        inOrder(root->right);
+    }
+}
+
 int main() 
 {
     return 0;
