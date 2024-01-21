@@ -43,6 +43,14 @@ void inOrder(Node *root)
     }
 }
 
+void preOrder(Node *root) 
+{
+    if (root != NULL) {
+        printf("%d\n", root->data);
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+}
 void deleteTree(Node *root) 
 {
     if (root != NULL) {
@@ -63,6 +71,8 @@ int main()
     root = insert(root, 5);
 
     inOrder(root);
+    printf("\n");
+    preOrder(root);
     deleteTree(root);
     return 0;
 }
