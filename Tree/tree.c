@@ -3,49 +3,35 @@
 
 typedef struct Node {
     int data;
-    struct Node *right;
     struct Node *left;
+    struct Node *right;
 } Node;
 
 Node* createNode(int value) 
 {
     Node *n = (Node *)malloc(sizeof(Node));
-    n->data  = value;
+    n->data = value;
     n->right = NULL;
-    n->left  = NULL;
+    n->left = NULL;
 
     return n;
 }
 
-void insertAtLeft(Node **node, int el)
+Node* insert(Node *root, int value) 
 {
-    if ((*node)->left == NULL) {
-        Node *newNode = createNode(el);
-        (*node)->left = newNode;
+    if (root == NULL) {
+        return createNode(value);
+    }
+    
+    else if (value > root->data) {
+        root->right = insert(root->right, value);
+    } 
+    
+    else if (value < root->data) {
+        root->left = insert(root->left, value);
     }
 
-    else {
-        if (el < (*node)->left->data)
-            insertAtLeft((*node)->left, el);
-        else 
-            insertAtRight((*node)->left, el);
-    }
-}
-
-
-void insert(Node **root, int el) 
-{
-    Node *newNode = createNode(el);
-
-    if (*root == NULL) 
-        *root = newNode;
-
-    else {
-        if (el > (*root)->data) 
-            (*root)->right = newNode;
-        else 
-            (*root)->left  = newNode;
-    }
+    return root;
 }
 
 int main() 
