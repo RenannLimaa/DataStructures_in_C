@@ -3,30 +3,29 @@
 
 typedef struct Node {
     int data;
-    struct Node *left;
     struct Node *right;
+    struct Node *left;
 } Node;
 
-Node* createNode(int value) 
+Node* createNode(int data) 
 {
     Node *n = (Node *)malloc(sizeof(Node));
-    n->data = value;
-    n->right = NULL;
+    n->data = data;
     n->left = NULL;
+    n->right = NULL;
 
     return n;
 }
 
-Node* insert(Node *root, int value) 
+Node* insert(Node *root, int value)
 {
-    if (root == NULL) {
+    if (root == NULL)
         return createNode(value);
-    }
-    
-    else if (value > root->data) {
+
+    if (value > root->data) {
         root->right = insert(root->right, value);
-    } 
-    
+    }
+
     else if (value < root->data) {
         root->left = insert(root->left, value);
     }
@@ -61,10 +60,9 @@ void postOrder(Node *root)
     }
 }
 
-void deleteTree(Node *root) 
+void deleteTree(Node *root)
 {
     if (root != NULL) {
-
         deleteTree(root->left);
         deleteTree(root->right);
         free(root);
@@ -73,18 +71,14 @@ void deleteTree(Node *root)
 
 int main() 
 {
-    Node *root = createNode(20);
-    
+    Node *root;
+
+    root = insert(root, 20);
     root = insert(root, 4);
     root = insert(root, 3);
-    root = insert(root, 23);
-    root = insert(root, 5);
-
+    root = insert(root, 5); 
+    root = insert(root, 24);  
     inOrder(root);
-    printf("\n");
-    postOrder(root);
-    printf("\n");
-    preOrder(root);
     deleteTree(root);
     return 0;
 }
