@@ -46,6 +46,17 @@ Node* removeNode(Node *root, int el)
                 free(root);
                 return NULL;
             }
+
+            else if (root->right != NULL || root->left != NULL) {
+                Node *tmp;
+                if (root->right != NULL) 
+                    tmp = root->right;
+                else
+                    tmp = root->left;
+
+                free(root);
+                return tmp;
+            }
         }
 
         else if (el > root->data) 
@@ -105,6 +116,7 @@ int main()
     preOrder(root);
 
     root = removeNode(root, 5);
+    root = removeNode(root, 3);
     preOrder(root);
     deleteTree(root);
     return 0;
