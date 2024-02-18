@@ -47,7 +47,7 @@ Node* removeNode(Node *root, int el)
                 return NULL;
             }
 
-            else if (root->right != NULL || root->left != NULL) {
+            else if (root->right == NULL || root->left == NULL) {
                 Node *tmp;
                 if (root->right != NULL) 
                     tmp = root->right;
