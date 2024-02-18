@@ -33,6 +33,30 @@ Node* insert(Node *root, int value)
     return root;
 }
 
+Node* removeNode(Node *root, int el) 
+{
+    if (root == NULL) {
+        printf("removeNode: value not found or empty tree!\n");
+        return NULL;
+    }
+
+    else {
+        if (root->data == el) {
+            if (root->right == NULL && root->left == NULL) {
+                free(root);
+                return NULL;
+            }
+        }
+
+        else if (el > root->data) 
+            root->right = removeNode(root->right, el);
+        else
+            root->left = removeNode(root->left, el);
+    }
+
+    return root;
+}
+
 void inOrder(Node *root) 
 {
     if (root != NULL) {
@@ -71,14 +95,17 @@ void deleteTree(Node *root)
 
 int main() 
 {
-    Node *root;
+    Node *root = NULL;
 
     root = insert(root, 20);
     root = insert(root, 4);
     root = insert(root, 3);
     root = insert(root, 5); 
     root = insert(root, 24);  
-    inOrder(root);
+    preOrder(root);
+
+    root = removeNode(root, 5);
+    preOrder(root);
     deleteTree(root);
     return 0;
 }
