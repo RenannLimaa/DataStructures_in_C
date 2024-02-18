@@ -57,6 +57,19 @@ Node* removeNode(Node *root, int el)
                 free(root);
                 return tmp;
             }
+            else if (root->right != NULL && root->left != NULL) {
+               Node *maxLeft = root->left; 
+               Node *parent = root; 
+               while (maxLeft->right != NULL) {
+                   parent = maxLeft;
+                   maxLeft = maxLeft->right;
+               }
+                
+               root->data = maxLeft->data;
+               parent->right = NULL;
+               free(maxLeft);
+               return root;
+            }
         }
 
         else if (el > root->data) 
@@ -110,13 +123,14 @@ int main()
 
     root = insert(root, 20);
     root = insert(root, 4);
-    root = insert(root, 3);
-    root = insert(root, 5); 
-    root = insert(root, 24);  
+    root = insert(root, 2);
+//    root = insert(root, 3);
+ //   root = insert(root, 5); 
+//    root = insert(root, 24);  
     preOrder(root);
+    printf("\n");
 
-    root = removeNode(root, 5);
-    root = removeNode(root, 3);
+    root = removeNode(root, 20);
     preOrder(root);
     deleteTree(root);
     return 0;
