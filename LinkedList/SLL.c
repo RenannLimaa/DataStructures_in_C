@@ -18,9 +18,6 @@ void insertAtEnd(Node **head, int value)
 {
 	Node *newNode = createNode(value);
 	
-	newNode->data = value;
-	newNode->next = NULL;
-
 	if (*head == NULL) {
 		*head = newNode;		
 	}

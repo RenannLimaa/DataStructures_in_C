@@ -20,8 +20,6 @@ Node* createNode(int value)
 void insertAtEnd(Node **head, int value)
 {
     Node *newNode = createNode(value);
-    newNode->data = value;
-    newNode->next = NULL;
         
     if (*head == NULL) {
         *head = newNode;
@@ -42,8 +40,6 @@ void insertAtEnd(Node **head, int value)
 void insertAtBeginning(Node **head, int value) 
 {
     Node *newNode = createNode(value);
-    newNode->data = value;    
-    newNode->prev = NULL;
     
     if (*head == NULL) {
         *head = newNode;
@@ -59,13 +55,13 @@ void insertAtBeginning(Node **head, int value)
 
 void removeFromEnd(Node **head)
 {
-    Node *tmp = *head;
-    if (tmp->next == NULL) {
-        free(tmp);
+    if ((*head)->next == NULL) {
+        free(*head);
         *head = NULL;
     }
 
     else {
+        Node *tmp = *head;
         while (tmp->next != NULL) {
             tmp = tmp->next;
         }
@@ -132,7 +128,6 @@ void printList(Node **head)
 
 }
 
-
 void printReverseList(Node **head)
 {
     if (*head == NULL)
@@ -157,7 +152,7 @@ int main()
     insertAtEnd(&head, 1);
     insertAtEnd(&head, 2);
     insertAtEnd(&head, 3);
-    
+    insertAtBeginning(&head, 0); 
     int found = search(&head, 3);
     printf("%s\n", found == 1 ? "Value is in list" : "Value is not in list");
     found = search(&head, 13);
